@@ -32,5 +32,8 @@
     "README.md",
     "src/tpl/"
   ],
-  "scripts": {}
+  "scripts": {
+    "build": "tsc -p .",
+    "prepare": "npm run build"
+  }
 }
