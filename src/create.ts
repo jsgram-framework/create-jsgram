@@ -37,7 +37,7 @@ function copyFiles(from: string, to: string, type: string)
 
 	console.log("in "+tplDir);
 
-	from += "./node_modules/create-jsgram/tpl/" + tplDir + "/";
+	from += "./node_modules/create-jsgram/src/tpl/" + tplDir + "/";
 
 	ncp(from,to,(err) => {
 		if(err) {
