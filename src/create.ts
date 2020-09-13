@@ -5,6 +5,7 @@ import * as program from "commander";
 import {existsSync, mkdirSync, readFileSync, renameSync, writeFileSync} from "fs";
 import {execSync} from "child_process";
 import * as chalk from "chalk";
+import * as path from "path";
 
 export type TplObject = {
 	dependencies: object;
@@ -20,7 +21,7 @@ program
 	})
 	.parse(process.argv);
 
-function startProcess(serverName: string, type: string = "", devInstall = "false")
+function startProcess(serverName: string, type: string = "", devInstall = "0")
 {
 	let dir: string = "./" + serverName;
 
@@ -31,12 +32,11 @@ function startProcess(serverName: string, type: string = "", devInstall = "false
 	copyFiles("",dir,type,devInstall);
 }
 
-function copyFiles(from: string, to: string, type: string = "",devInstall = "false")
+function copyFiles(from: string, to: string, type: string = "", devInstall = "0")
 {
 	const typescriptTpls: TplObject = {
 		dependencies: {
 			"gram-route": "^1.1.0",
-			"mysql2": "^2.1.0",
 			"dotenv": "^8.2.0"
 		},
 		devDependencies: {
@@ -74,7 +74,7 @@ function copyFiles(from: string, to: string, type: string = "",devInstall = "fal
 
 	console.log("in "+tplDir);
 
-	from += "./node_modules/create-jsgram/src/tpl/" + tplDir + "/";
+	from += path.join(__dirname, "../src/tpl/" + tplDir + "/");
 
 	ncp(from,to,(err) => {
 		if(err) {
@@ -85,10 +85,10 @@ function copyFiles(from: string, to: string, type: string = "",devInstall = "fal
 		console.log("");
 
 		init(to,tpl,devInstall);
-	})
+	});
 }
 
-function init(dir: string, tpl: TplObject, devInstall = "false")
+function init(dir: string, tpl: TplObject, devInstall = "0")
 {
 	console.log(chalk.yellow("starting initialisation"));
 	console.log("");
@@ -117,10 +117,14 @@ function init(dir: string, tpl: TplObject, devInstall = "false")
 
 	writeFileSync("package.json",JSON.stringify(pkg,null,2));
 
-	if(devInstall !== "false") {
+	if(devInstall !== "0") {
 		console.log(chalk.yellow("install dependencies"));
 
-		execSync("npm install");
+		if (devInstall === "1") {
+			execSync("npm install --production");
+		} else {
+			execSync("npm install");
+		}
 	}
 
 	console.log("");
