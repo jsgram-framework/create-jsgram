@@ -5,12 +5,12 @@
 		"sourceMap": true,
 		"lib": ["es5", "es6","es2018"],
 		"outDir": "./dist",
-		"rootDir": "./src",
+		"baseUrl": ".",
 		"moduleResolution": "node",
 		"declaration": true
 	},
 	"include": [
-		"src/"
+		"app/","routes/","index.ts"
 	],
 	"exclude": [
 		"node_modules"
