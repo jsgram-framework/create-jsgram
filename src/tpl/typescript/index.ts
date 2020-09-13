@@ -1,5 +1,6 @@
 import {Routes} from "./routes/index";
 import {dispatcher, router} from "gram-route";
+import {config} from "dotenv";
 
 //init the collector
 let r = router();
@@ -12,6 +13,9 @@ routes.init();
 //get the dispatcher
 
 let d = dispatcher();
+
+//load env
+config();
 
 //start the server
 
