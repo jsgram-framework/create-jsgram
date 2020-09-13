@@ -1,19 +1,19 @@
 {
   "name": "create-jsgram",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An easy to use project with jsgram",
   "author": "Jörn Heinemann <joernheinemann@gmx.de>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/grammm/jsgram/route.git"
+    "url": "https://gitlab.com/grammm/jsgram/create-jsgram.git"
   },
   "keywords": [
     "gram"
   ],
   "dependencies": {
+    "chalk": "^4.1.0",
     "commander": "^6.1.0",
-    "gram-route": "^1.1.0",
     "ncp": "^2.0.0"
   },
   "devDependencies": {
