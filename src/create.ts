@@ -36,7 +36,7 @@ function copyFiles(from: string, to: string, type: string = "", devInstall = "0"
 {
 	const typescriptTpls: TplObject = {
 		dependencies: {
-			"gram-route": "^1.1.0",
+			"jsgram": "^0.1.1",
 			"dotenv": "^8.2.0"
 		},
 		devDependencies: {
